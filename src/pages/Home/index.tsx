@@ -6,74 +6,126 @@ import { isAscSort, isDescSort, stringToListOfNumber, mergeSort } from "../../ut
 import "./styles.scss";
 
 const { HOME: {
-    COLLECTION_1,
-    COLLECTION_2,
-    COLLECTION_3,
-    USE_DEFAULT_VALUE,
+    TITLE,
+    ARRAY_1,
+    ARRAY_2,
+    ARRAY_3,
+    USE_DEFAULT,
     CLEAR,
     MERGE,
     ASC_PLACEHOLDER,
     DESC_PLACEHOLDER,
-} } = en;
+    RESULT,
+    ERROR,
+}, ERROR: { INCORRECT, NOT_SORTED } } = en;
+
+const DEFAULT = {
+    ARRAY_1: "10, 5",
+    ARRAY_2: "2, 4, 6",
+    ARRAY_3: "1, 3, 5",
+};
 
 const Home = () => {
-    const [collection1, setCollections1] = useState<string>("");
-    const [collection2, setCollections2] = useState<string>("");
-    const [collection3, setCollections3] = useState<string>("");
-    const [sortedCollection, setSortedCollection] = useState<string>("");
+    const [array1, setArray1] = useState<string>("");
+    const [array2, setArray2] = useState<string>("");
+    const [array3, setArray3] = useState<string>("");
+    const [mergedArray, setMergedArray] = useState<number[]>([]);
+    const [error, setError] = useState<string>("");
 
     const handleMerge = useCallback(() => {
         // convert string to list of number
-        const nums1 = stringToListOfNumber(collection1);
-        const nums2 = stringToListOfNumber(collection2);
-        const nums3 = stringToListOfNumber(collection3);
+        const nums1 = stringToListOfNumber(array1);
+        const nums2 = stringToListOfNumber(array2);
+        const nums3 = stringToListOfNumber(array3);
 
         if (!nums1 || !nums2 || !nums3) {
-            console.log('error')
-            return
+            setMergedArray([])
+            setError(INCORRECT)
         } else if (!isDescSort(nums1) || !isAscSort(nums2) || !isAscSort(nums3)) {
             // check whether each array already sort or not
-            console.log('not sort')
-            return
+            setMergedArray([])
+            setError(NOT_SORTED)
         } else {
+            // merge
             const sortedNums = mergeSort(nums1, nums2, nums3);
-            setSortedCollection(sortedNums.join(", "));
+            setMergedArray(sortedNums);
+            setError("")
         }
         
-    }, [collection1, collection2, collection3])
+    }, [array1, array2, array3])
+
+    const handleClear = useCallback(() => {
+        setArray1("")
+        setArray2("")
+        setArray3("")
+        setMergedArray([])
+        setError("")
+    }, [])
+
+    const setDefaultValue = useCallback(() => {
+        setArray1(DEFAULT.ARRAY_1)
+        setArray2(DEFAULT.ARRAY_2)
+        setArray3(DEFAULT.ARRAY_3)
+        setMergedArray([])
+        setError("")
+    }, [])
 
     const isDiabledMerge = useMemo(() => {
-      return !collection1 || !collection2 || !collection3;
-    }, [collection1, collection2, collection3])
+      return !array1 || !array2 || !array3;
+    }, [array1, array2, array3])
 
     return (
       <div className="home">
+        <div className="home__title">{TITLE}</div>
         <div className="home__input">
-            <TextField value={collection1} label={COLLECTION_1} placeholder={DESC_PLACEHOLDER} onChange={setCollections1} />
-            <TextField value={collection2} label={COLLECTION_2} placeholder={ASC_PLACEHOLDER} onChange={setCollections2} />
-            <TextField value={collection3} label={COLLECTION_3} placeholder={ASC_PLACEHOLDER} onChange={setCollections3} />
+          <TextField
+            value={array1}
+            label={ARRAY_1}
+            placeholder={DESC_PLACEHOLDER}
+            onChange={setArray1}
+          />
+          <TextField
+            value={array2}
+            label={ARRAY_2}
+            placeholder={ASC_PLACEHOLDER}
+            onChange={setArray2}
+          />
+          <TextField
+            value={array3}
+            label={ARRAY_3}
+            placeholder={ASC_PLACEHOLDER}
+            onChange={setArray3}
+          />
         </div>
         <div className="home__actions">
-            <Button secondary onClick={() => { console.log('use default') }}>
-                <div>{USE_DEFAULT_VALUE}</div>
-            </Button>
-            <Button secondary onClick={() => { console.log('clear') }}>
-                <div>{CLEAR}</div>
-            </Button>
-            <Button disabled={isDiabledMerge} onClick={handleMerge}>
-                <div>{MERGE}</div>
-            </Button>
+          <Button secondary onClick={setDefaultValue}>
+            <div>{USE_DEFAULT}</div>
+          </Button>
+          <Button secondary onClick={handleClear}>
+            <div>{CLEAR}</div>
+          </Button>
+          <Button disabled={isDiabledMerge} onClick={handleMerge}>
+            <div>{MERGE}</div>
+          </Button>
         </div>
-        <div className="home__result">
-            {sortedCollection && (
-                <div>
-                    <div>Result</div>
-                    {sortedCollection}
-                </div>
-            )}
-        </div>
+        {!!mergedArray.length && (
+          <div className="home__result">
+            <div className="title">{RESULT}</div>
+            <div className="value">
+              {mergedArray.map((num: number) => (
+                <div className="item">{num}</div>
+              ))}
+            </div>
+          </div>
+        )}
+        {error && (
+           <div className="home__error">
+                <div className="title">{ERROR}</div>
+                <div>{error}</div>
+           </div> 
+        )}
       </div>
-    )
+    );
 }
 
 export default Home;

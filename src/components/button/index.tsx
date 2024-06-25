@@ -12,7 +12,7 @@ type ButtonType = {
 const Button = ({
   disabled = false,
   secondary = false,
-  size = "medium",
+  size = "small",
   onClick,
   children,
 }: ButtonType) => {

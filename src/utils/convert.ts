@@ -2,10 +2,13 @@ export const stringToListOfNumber = (numsStr: string) => {
     const arr = numsStr.split(",");
     const nums: number[] = []
     for (let i = 0; i < arr.length; i++) {
-        const num = parseInt(arr[i].trim());
+        const s = arr[i].trim();
+        if (!s) continue;
+
+        const num = parseInt(s);
         if (!num) return false;
+        
         nums.push(num);
     }
-
     return nums;
 }
