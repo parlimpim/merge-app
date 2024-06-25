@@ -6,8 +6,8 @@ export const stringToListOfNumber = (numsStr: string) => {
         if (!s) continue;
 
         const num = parseInt(s);
-        if (!num) return false;
-        
+        if (num !== 0 && !num) return false;
+
         nums.push(num);
     }
     return nums;

@@ -29,9 +29,13 @@
         background-color: var(--primary-deep-blue);
     }
 
-    &.secondary, &.secondary:hover {
+    &.secondary {
         border: 1px solid var(--primary-blue);
         background-color: var(--primary-white);
         color: var(--primary-blue);
+    }
+
+    &.secondary:hover:not([disabled]) {
+        background-color: var(--primary-gray);
     }
 }
