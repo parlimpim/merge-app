@@ -2,9 +2,9 @@ export default {
   COMMON: {},
   HOME: {
     TITLE: "Merge 3 sorted arrays",
-    ARRAY_1: "Collection 1",
-    ARRAY_2: "Collection 2",
-    ARRAY_3: "Collection 3",
+    ARRAY_1: "Array 1",
+    ARRAY_2: "Array 2",
+    ARRAY_3: "Array 3",
     USE_DEFAULT: "Use default",
     CLEAR: "Clear",
     MERGE: "Merge",

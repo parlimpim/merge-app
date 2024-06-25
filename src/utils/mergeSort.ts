@@ -1,7 +1,7 @@
 const merge = (arr1: number[], arr2: number[]) => {
     let i = 0;
     let j = 0;
-    let result: number[] = [];
+    const result: number[] = [];
 
     while (i < arr1.length && j < arr2.length) {
         if (arr2[j] > arr1[i]) {
