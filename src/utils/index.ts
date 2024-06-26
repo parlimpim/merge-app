@@ -1,10 +1,10 @@
 import { isAscSort, isDescSort } from "./checkSort";
 import { stringToListOfNumber } from "./convert";
-import { mergeSort } from "./mergeSort";
+import { mergeSortedArray } from "./merge";
 
 export {
   isAscSort,
   isDescSort,
   stringToListOfNumber,
-  mergeSort
+  mergeSortedArray,
 };

@@ -1,4 +1,4 @@
-const mergeThree = (arr1: number[], arr2: number[], arr3: number[]) => {
+export const mergeSortedArray = (arr1: number[], arr2: number[], arr3: number[]) => {
   let i = 0, j = 0, k = 0;
   let val1, val2, val3;
   const MAX = 2**31 - 1;
@@ -23,11 +23,3 @@ const mergeThree = (arr1: number[], arr2: number[], arr3: number[]) => {
 
   return result
 }
-
-export const mergeSort = (
-  nums1: number[],
-  nums2: number[],
-  nums3: number[]
-) => {
-  return mergeThree(nums1, nums2, nums3);
-};

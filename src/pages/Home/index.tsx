@@ -5,7 +5,7 @@ import TextField from "../../components/textField";
 import Button from "../../components/button";
 
 // utils
-import { isAscSort, isDescSort, stringToListOfNumber, mergeSort } from "../../utils";
+import { isAscSort, isDescSort, stringToListOfNumber, mergeSortedArray } from "../../utils";
 import { DEFAULT } from "../../utils/constants";
 import en from "../../utils/en";
 
@@ -47,7 +47,7 @@ const Home = () => {
             setError(NOT_SORTED)
         } else {
             // merge
-            const sortedNums = mergeSort(nums1.slice().reverse(), nums2, nums3);
+            const sortedNums = mergeSortedArray(nums1.slice().reverse(), nums2, nums3);
             setMergedArray(sortedNums);
             setError("")
         }
