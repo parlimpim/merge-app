@@ -2,6 +2,7 @@ import cn from "classnames";
 import "./styles.scss"
 
 type ButtonType = {
+  id: string,
   disabled?: boolean;
   secondary?: boolean;
   size?: "small" | "medium" | "large";
@@ -10,6 +11,7 @@ type ButtonType = {
 };
 
 const Button = ({
+  id,
   disabled = false,
   secondary = false,
   size = "small",
@@ -18,6 +20,7 @@ const Button = ({
 }: ButtonType) => {
   return (
     <button
+      id={`${id}-button`}
       className={cn("button", { [size]: size, secondary } )}
       disabled={disabled}
       onClick={onClick}

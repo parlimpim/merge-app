@@ -1,8 +1,14 @@
 import { useState, useMemo, useCallback } from "react";
+
+// components
 import TextField from "../../components/textField";
 import Button from "../../components/button";
-import en from "../../utils/en";
+
+// utils
 import { isAscSort, isDescSort, stringToListOfNumber, mergeSort } from "../../utils";
+import { DEFAULT } from "../../utils/constants";
+import en from "../../utils/en";
+
 import "./styles.scss";
 
 const { HOME: {
@@ -18,12 +24,6 @@ const { HOME: {
     RESULT,
     ERROR,
 }, ERROR: { INCORRECT, NOT_SORTED } } = en;
-
-const DEFAULT = {
-    ARRAY_1: "10, 5, 0",
-    ARRAY_2: "2, 4, 6, 12",
-    ARRAY_3: "1, 3, 5",
-};
 
 const Home = () => {
     const [array1, setArray1] = useState<string>("");
@@ -47,7 +47,7 @@ const Home = () => {
             setError(NOT_SORTED)
         } else {
             // merge
-            const sortedNums = mergeSort(nums1, nums2, nums3);
+            const sortedNums = mergeSort(nums1.slice().reverse(), nums2, nums3);
             setMergedArray(sortedNums);
             setError("")
         }
@@ -79,18 +79,21 @@ const Home = () => {
         <div className="home__title">{TITLE}</div>
         <div className="home__input">
           <TextField
+            id="array1"
             value={array1}
             label={ARRAY_1}
             placeholder={DESC_PLACEHOLDER}
             onChange={setArray1}
           />
           <TextField
+            id="array2"
             value={array2}
             label={ARRAY_2}
             placeholder={ASC_PLACEHOLDER}
             onChange={setArray2}
           />
           <TextField
+            id="array3"
             value={array3}
             label={ARRAY_3}
             placeholder={ASC_PLACEHOLDER}
@@ -98,13 +101,13 @@ const Home = () => {
           />
         </div>
         <div className="home__actions">
-          <Button secondary onClick={setDefaultValue}>
+          <Button secondary id="use-default" onClick={setDefaultValue}>
             <div>{USE_DEFAULT}</div>
           </Button>
-          <Button secondary onClick={handleClear}>
+          <Button secondary id="clear" onClick={handleClear}>
             <div>{CLEAR}</div>
           </Button>
-          <Button disabled={isDiabledMerge} onClick={handleMerge}>
+          <Button id="merge" disabled={isDiabledMerge} onClick={handleMerge}>
             <div>{MERGE}</div>
           </Button>
         </div>
@@ -113,7 +116,7 @@ const Home = () => {
             <div className="title">{RESULT}</div>
             <div className="value">
               {mergedArray.map((num: number) => (
-                <div className="item">{num}</div>
+                <div key={num} className="item">{num}</div>
               ))}
             </div>
           </div>

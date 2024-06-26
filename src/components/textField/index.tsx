@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import "./styles.scss";
 
-export type TextFieldType = {
+type TextFieldType = {
+  id: string,
   value: string;
   placeholder?: string;
   label?: string;
@@ -9,6 +10,7 @@ export type TextFieldType = {
 };
 
 const TextField = ({
+  id,
   value: valueFromProps,
   placeholder,
   label,
@@ -28,6 +30,7 @@ const TextField = ({
     <div className="textField">
       {label && <div className="textField__label">{label}</div>}
       <input
+        id={`${id}-input`}
         className="textField__input"
         value={value}
         onChange={(e) => onChange(e.target.value)}

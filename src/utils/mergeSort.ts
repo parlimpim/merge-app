@@ -1,38 +1,33 @@
-const merge = (arr1: number[], arr2: number[]) => {
-    let i = 0;
-    let j = 0;
-    const result: number[] = [];
+const mergeThree = (arr1: number[], arr2: number[], arr3: number[]) => {
+  let i = 0, j = 0, k = 0;
+  let val1, val2, val3;
+  const MAX = 2**31 - 1;
+  const result: number[] = [];
+  
+  while (i < arr1.length || j < arr2.length || k < arr3.length) {
+    val1 = i >= arr1.length ? MAX : arr1[i];
+    val2 = j >= arr2.length ? MAX : arr2[j];
+    val3 = k >= arr3.length ? MAX : arr3[k];
 
-    while (i < arr1.length && j < arr2.length) {
-        if (arr2[j] > arr1[i]) {
-            result.push(arr1[i])
-            i += 1
-        } else {
-            result.push(arr2[j])
-            j +=  1
-        }
-    }
-
-    while (i < arr1.length) {
-        result.push(arr1[i])
+    if (val1 < val2 && val1 < val3) {
+        result.push(val1);
         i += 1
-    }
-
-    while(j < arr2.length) {
-        result.push(arr2[j])
+      } else if (val2 < val1 && val2 < val3) {
+        result.push(val2);
         j += 1
-    }
+      } else {
+        result.push(val3);
+        k += 1
+      } 
+  }
 
-    return result
+  return result
 }
 
-export const mergeSort = (nums1: number[], nums2: number[], nums3: number[]) => {
-    const mergeNums = merge(nums2, nums3);
-    const reversedNums1 = nums1.slice().reverse();
-
-    if (reversedNums1.slice(0)[0] >= mergeNums.slice(-1)[0]) {
-        return mergeNums.concat(reversedNums1);
-    }
-
-    return merge(mergeNums, reversedNums1);
-}
+export const mergeSort = (
+  nums1: number[],
+  nums2: number[],
+  nums3: number[]
+) => {
+  return mergeThree(nums1, nums2, nums3);
+};
