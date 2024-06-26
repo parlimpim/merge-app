@@ -10,16 +10,16 @@ export const mergeSortedArray = (arr1: number[], arr2: number[], arr3: number[])
     val3 = k >= arr3.length ? MAX : arr3[k];
 
     if (val1 < val2 && val1 < val3) {
-        result.push(val1);
-        i += 1
-      } else if (val2 < val1 && val2 < val3) {
-        result.push(val2);
-        j += 1
-      } else {
-        result.push(val3);
-        k += 1
-      } 
+      result.push(val1);
+      i += 1;
+    } else if (val2 < val1 && val2 < val3) {
+      result.push(val2);
+      j += 1;
+    } else {
+      result.push(val3);
+      k += 1;
+    } 
   }
 
-  return result
-}
+  return result;
+};

@@ -1,7 +1,7 @@
-import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom";
 
 // pages
-import Home from './pages/Home';
+import Home from "./pages/Home";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -9,14 +9,14 @@ const router = createBrowserRouter(
       <Route element={<Home />} />
     </Route>
   )
-)
+);
 
 function App() {
   return (
     <>
       <RouterProvider router={router}/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

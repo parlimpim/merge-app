@@ -1,5 +1,5 @@
 import cn from "classnames";
-import "./styles.scss"
+import "./styles.scss";
 
 type ButtonType = {
   id: string,
