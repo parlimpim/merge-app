@@ -1,30 +1,46 @@
-# React + TypeScript + Vite
+# React Merge App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains a web application to merge 3 sorted arrays
 
-Currently, two official plugins are available:
+- 1st array: sort from max to min
+- 2nd array: sort from min to max
+- 3rd array: sort from min to max
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Remark: The input string should have numbers separated by commas.
 
-## Expanding the ESLint configuration
+## Getting started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Installation
 
-- Configure the top-level `parserOptions` property like this:
+Clone the repository
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+git clone https://github.com/parlimpim/merge-app.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Install all the dependencies
+
+```
+cd merge-app
+npm install
+```
+
+### Running the app
+
+```
+npm run dev
+```
+
+### To Visit App
+
+go to http://localhost:5173
+
+### Test
+
+```bash
+# unit tests
+$ npm run test
+
+# test coverage
+$ npm run test:cov
+```

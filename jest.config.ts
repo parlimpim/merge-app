@@ -9,7 +9,7 @@ module.exports = {
     "**/?(*.)+(spec|test).+(ts|tsx|js)",
   ],
   transform: {
-    "^.+\\.(t|j)sx?$": "ts-jest",
+    "^.+\\.(t|j)sx?$": ["ts-jest", { diagnostics: { ignoreCodes: ["TS151001"] } }],
   },
   moduleNameMapper: {
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
